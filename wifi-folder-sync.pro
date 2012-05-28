@@ -11,8 +11,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        gui.cpp
+        gui.cpp \
+    mthread.cpp
 
-HEADERS  += gui.h
+HEADERS  += gui.h \
+    mthread.h
 
 FORMS    += gui.ui
