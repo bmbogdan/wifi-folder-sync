@@ -1,0 +1,1 @@
+Master-slave folder synchronization across local area network over TCP using UDP as supervisor
