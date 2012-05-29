@@ -13,7 +13,6 @@ void MThread::run()
 
     // dupa oprirea threadului do some clean up
     //QMetaObject::invokeMethod(this->parent(),"metaCalled", Qt::QueuedConnection, Q_ARG(int, exitCode));
-
 }
 
 void MThread::toGui(const QByteArray &ba)

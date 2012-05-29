@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 TARGET = wifi-folder-sync
 TEMPLATE = app
@@ -12,9 +12,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         gui.cpp \
-    mthread.cpp
+    mthread.cpp \
+    directoryscanner.cpp \
+    udp.cpp
 
 HEADERS  += gui.h \
-    mthread.h
+    mthread.h \
+    directoryscanner.h \
+    udp.h
 
 FORMS    += gui.ui

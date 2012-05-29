@@ -2,6 +2,7 @@
 #define GUI_H
 
 #include <QMainWindow>
+#include "directoryscanner.h"
 
 namespace Ui {
 class Gui;
@@ -15,8 +16,12 @@ public:
     explicit Gui(QWidget *parent = 0);
     ~Gui();
     
+private slots:
+    void on_dirButton_clicked();
+
 private:
     Ui::Gui *ui;
+    DirectoryScanner *d_scanner;
 };
 
 #endif // GUI_H
