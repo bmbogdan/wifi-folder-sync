@@ -1,10 +1,15 @@
 #include "directoryscanner.h"
 #include "qdebug.h"
 
+//Returns tree like filesystem structure in canonical form
+//directories are reprezented with "<" symbol at the begining of their names
+
+
+
 DirectoryScanner::DirectoryScanner(QObject *parent) :
     QObject(parent)
 {
-    contor = 0;
+    counter = 0;
 }
 QString DirectoryScanner::getFileSystemFromDir(QDir dir){
     QFileInfoList fil = dir.entryInfoList(QDir::Dirs |
@@ -21,16 +26,16 @@ QString DirectoryScanner::getFileSystemFromDir(QDir dir){
 
         qDebug()<<fi.fileName();
 
-        for(int j=0;j<contor;j++){
+        for(int j=0;j<counter;j++){
             filesystem.append("  ");
         }
         if(fi.isDir()){
-            contor += 1;
+            counter += 1;
             filesystem.append("<");
             filesystem.append(fi.fileName());
             filesystem.append("\n");
             filesystem.append(getFileSystemFromDir(QDir(fi.absoluteFilePath())));
-            contor -= 1;
+            counter -= 1;
         }
         else{
             filesystem.append(fi.fileName());

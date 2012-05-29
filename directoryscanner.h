@@ -17,7 +17,7 @@ public slots:
     QString getFileSystemFromDir(QDir);
 
 private:
-    int contor;
+    int counter;
     
 };
 
