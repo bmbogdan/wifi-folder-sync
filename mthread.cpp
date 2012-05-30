@@ -1,10 +1,13 @@
 #include "mthread.h"
 #include "qcoreapplication.h"
 
+//tcpport=udpidport+100
+
 MThread::MThread(QObject *parent) :
     QThread(parent)
 {
-
+    udpSkt = 0;
+    udpSkt = new Udp(this);
 }
 
 void MThread::run()
@@ -24,6 +27,17 @@ void MThread::toGui(const QByteArray &ba)
 
 void MThread::fromGui(const QByteArray &ba)
 {
+    //demultiplexeaza ba si citeste date master sau slave
+    //initUdp(bool master=true)
+    bool master = true;
+    if(master){
+        udpSkt->initialize(master);
+        initTcpServer();
+    }
+}
+
+
+void MThread::initTcpServer(){
 
 }
 

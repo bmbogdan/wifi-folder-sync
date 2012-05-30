@@ -11,6 +11,9 @@ Gui::Gui(QWidget *parent) :
 {
     ui->setupUi(this);
     d_scanner = new DirectoryScanner(this);
+    worker = 0;
+    worker = new MThread(this);
+    worker->start();
 }
 
 Gui::~Gui()

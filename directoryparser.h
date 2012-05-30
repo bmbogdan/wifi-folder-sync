@@ -14,10 +14,8 @@ public:
 signals:
     
 public slots:
-    //void setFileSystemStructure(QString);
 public:
     static QList<FileObject> getFileList(QString);
-    //static void getFileList(QString);
     
 };
 

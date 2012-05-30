@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "directoryscanner.h"
+#include "mthread.h"
 
 namespace Ui {
 class Gui;
@@ -22,6 +23,7 @@ private slots:
 private:
     Ui::Gui *ui;
     DirectoryScanner *d_scanner;
+    MThread *worker;
 };
 
 #endif // GUI_H

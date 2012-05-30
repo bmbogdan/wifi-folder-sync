@@ -2,6 +2,7 @@
 #define MTHREAD_H
 
 #include <QThread>
+#include "udp.h"
 
 /*************************************************
 **************************************************
@@ -27,6 +28,9 @@ public slots:
 
 
 private:
+    Udp *udpSkt;
+    void initTcpServer();
+
 
 private slots:
 
