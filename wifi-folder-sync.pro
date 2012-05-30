@@ -14,11 +14,15 @@ SOURCES += main.cpp\
         gui.cpp \
     mthread.cpp \
     directoryscanner.cpp \
-    udp.cpp
+    udp.cpp \
+    directoryparser.cpp \
+    fileobject.cpp
 
 HEADERS  += gui.h \
     mthread.h \
     directoryscanner.h \
-    udp.h
+    udp.h \
+    directoryparser.h \
+    fileobject.h
 
 FORMS    += gui.ui

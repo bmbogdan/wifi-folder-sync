@@ -3,7 +3,7 @@
 #include "QFileDialog"
 
 #include "qdebug.h"
-
+#include "directoryparser.h"
 
 Gui::Gui(QWidget *parent) :
     QMainWindow(parent),
@@ -28,4 +28,6 @@ void Gui::on_dirButton_clicked()
     QString str = d_scanner->getFileSystemFromDir(direct);
 
     ui->textEdit->append(str);
+    DirectoryParser::getFileList(str);
+
 }
