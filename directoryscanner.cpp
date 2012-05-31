@@ -4,8 +4,6 @@
 //Returns tree like filesystem structure in canonical form
 //directories are reprezented with "<" symbol at the begining of their names
 
-
-
 DirectoryScanner::DirectoryScanner(QObject *parent) :
     QObject(parent)
 {

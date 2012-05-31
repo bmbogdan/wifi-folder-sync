@@ -6,57 +6,55 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>449</width>
-    <height>578</height>
+    <width>261</width>
+    <height>322</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Gui</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="dirButton">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>490</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Dir</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="exitButton">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>490</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Exit</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>0</y>
-      <width>431</width>
-      <height>481</height>
-     </rect>
-    </property>
-   </widget>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QTextEdit" name="textEdit"/>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QPushButton" name="dirButton">
+          <property name="text">
+           <string>MasterDir</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="slaveButton">
+          <property name="text">
+           <string>SlaveDir</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="exitButton">
+          <property name="text">
+           <string>Exit</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>449</width>
+     <width>261</width>
      <height>21</height>
     </rect>
    </property>

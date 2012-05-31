@@ -13,6 +13,7 @@ public:
     explicit Udp(QObject *parent = 0);
     
 signals:
+    void masterDiscovered(qint16 port, qint32 addr);
     
 public slots:
     void initialize(bool);
@@ -32,6 +33,7 @@ private:
     qint16 id;
     qint8 timerCounter;
     QTimer *timerObj;
+    QList<qint16> masterIDs;
 
 };
 

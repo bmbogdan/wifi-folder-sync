@@ -16,7 +16,6 @@ Udp::Udp(QObject *parent) :
     timerObj = 0;
     socket->bind(QHostAddress::Any, 1989);
     connect(socket, SIGNAL(readyRead()), this, SLOT(readPendingDatagrams()));
-
 }
 
 void Udp::initialize(bool master)
@@ -58,8 +57,17 @@ void Udp::processDatagram(const QByteArray datagram, const QHostAddress h_addres
     if(datagram.size()>42+1) return; //discard datagram
     quint32 addr = h_address.toIPv4Address();
     //QByteArray ba(addr);
+    QByteArray idOfSender;
+    idOfSender.append(datagram[0]);
+    idOfSender.append(datagram[1]);
+    qint16 idSender = (qint16)idOfSender.toInt(); // check here conversion !!!
+    if(masterIDs.contains(idSender))return;
+
+    if(masterIDs.size() > 5)return; // overflow protection
+    masterIDs.append(idSender);
 
     //citeste portul masterului si trimite un semnal pentru a se conecta la serverul tcp
+    emit masterDiscovered(idSender,addr);
 }
 
 //anunta masterul in retea
@@ -76,11 +84,7 @@ void Udp::sendBroadcast(){
     //write id in header
     QByteArray data(reinterpret_cast<const char*>(&id), sizeof(id));
 
-
-    //adauga alte detalii catre data ca portul serverului tcp
-
-
-    //in data adauga portul serverului tcp care va asculta
+    //id este portul serverului tcp care va asculta
 
     socket->writeDatagram(data,QHostAddress::Broadcast, 1989);
 

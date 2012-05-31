@@ -9,8 +9,8 @@ DirectoryParser::DirectoryParser(QObject *parent) :
 {
 
 }
-QList<FileObject> DirectoryParser::getFileList(QString fs){
-
+QList<FileObject> DirectoryParser::getFileList(QString fs)
+{
     QStringList sl = fs.split("\n");//n+1
 
     QList<FileObject> fl;

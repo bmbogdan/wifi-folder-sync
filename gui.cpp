@@ -1,7 +1,7 @@
 #include "gui.h"
 #include "ui_gui.h"
 #include "QFileDialog"
-
+#include <QCloseEvent>
 #include "qdebug.h"
 #include "directoryparser.h"
 
@@ -10,7 +10,6 @@ Gui::Gui(QWidget *parent) :
     ui(new Ui::Gui)
 {
     ui->setupUi(this);
-    d_scanner = new DirectoryScanner(this);
     worker = 0;
     worker = new MThread(this);
     worker->start();
@@ -28,9 +27,18 @@ void Gui::on_dirButton_clicked()
                                                     | QFileDialog::DontResolveSymlinks);
 
     QDir direct = QDir(dir);
-    QString str = d_scanner->getFileSystemFromDir(direct);
+    //QString str = d_scanner->getFileSystemFromDir(direct);
 
-    ui->textEdit->append(str);
-    DirectoryParser::getFileList(str);
+    ui->textEdit->append(dir);
+    //DirectoryParser::getFileList(str);
+    QByteArray ba;
+    ba.resize(1);
+    ba[0]=0x01;//master code 0000 0001
+    ba.append(dir);
+}
 
+void Gui::closeEvent(QCloseEvent *event)
+{
+    if(worker->isRunning())worker->quit();    //exit from thread event loop
+    event->accept();    //accept event
 }

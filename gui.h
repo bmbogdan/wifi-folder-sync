@@ -2,7 +2,6 @@
 #define GUI_H
 
 #include <QMainWindow>
-#include "directoryscanner.h"
 #include "mthread.h"
 
 namespace Ui {
@@ -22,8 +21,8 @@ private slots:
 
 private:
     Ui::Gui *ui;
-    DirectoryScanner *d_scanner;
     MThread *worker;
+    void closeEvent(QCloseEvent *);
 };
 
 #endif // GUI_H
