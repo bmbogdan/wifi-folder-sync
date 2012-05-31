@@ -18,7 +18,9 @@ SOURCES += main.cpp\
     filesystem/directoryparser.cpp \
     networking/udp.cpp \
     networking/slavemaster.cpp \
-    networking/masterslave.cpp
+    networking/masterslave.cpp \
+    filesystem/fileresolver.cpp \
+    filesystem/directorybuilder.cpp
 
 HEADERS  += gui.h \
     mthread.h \
@@ -27,6 +29,8 @@ HEADERS  += gui.h \
     filesystem/directoryparser.h \
     networking/udp.h \
     networking/slavemaster.h \
-    networking/masterslave.h
+    networking/masterslave.h \
+    filesystem/fileresolver.h \
+    filesystem/directorybuilder.h
 
 FORMS    += gui.ui

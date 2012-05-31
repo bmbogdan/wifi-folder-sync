@@ -17,8 +17,9 @@ public:
     ~Gui();
     
 private slots:
-    void on_dirButton_clicked();
-
+    void on_masterButton_clicked();
+    void on_slaveButton_clicked();
+    void dataFromThread(QByteArray);
 private:
     Ui::Gui *ui;
     MThread *worker;

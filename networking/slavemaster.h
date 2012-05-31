@@ -4,7 +4,9 @@
 #include <QObject>
 #include "filesystem/directoryscanner.h"
 #include "filesystem/directoryparser.h"
+#include "filesystem/fileresolver.h"
 #include <QTcpSocket>
+#include <QStack>
 
 class SlaveMaster : public QObject
 {
@@ -27,6 +29,7 @@ private:
     QString received_fileStruct;
     QList<FileObject> received_fileSystem;
     QTcpSocket *sktSlave;
+    QStack<qint16> fileStack;
     
 };
 

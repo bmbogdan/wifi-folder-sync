@@ -25,13 +25,12 @@ void MasterSlave::onSlaveConnected()
     connect(sktMaster, SIGNAL(readyRead()),this, SLOT(masterReadyRead()));
 
     //write data header - master folder filesystem
-
     QByteArray ba;
     ba.resize(1);
     ba[0]=0x03; // 0000 0011 // master + filestruct
     ba.append(master_fileStruct);
     sktMaster->write(ba);
-
+    sktMaster->flush();
 }
 void MasterSlave::masterReadyRead()
 {
@@ -41,8 +40,31 @@ void MasterSlave::masterReadyRead()
     if(header[0]&0x10){ //0001 0000 req file
         filerequested = sktSlave->readAll();
         FileObject fo(QString(filerequested), true);
-        if(master_fileSystem.contains(fo)){
+        if(master_fileSystem.contains(fo))
+        {
+            //build dir path
+            QString absolutePath("");
+            absolutePath.append(masterDir).append(QDir::separator());
+            absolutePath.append(fo.getName());
+            //pack header
+            QByteArray header;
+            header.append(0x20);
+            header.append((qint16)master_fileSystem.indexOf(fo));
+            sktSlave->write(header);
+
             //trimite fisierul!!! si header cu indexul fisierului
+            //also send filesize in qint32 - daca nu merge!
+            //to do not opening case
+            QFile fisier(absolutePath);
+            if (!fisier.open(QIODevice::ReadOnly))
+                qDebug()<<"not opening";
+
+            while(!fisier.atEnd()){
+                sktSlave->write(fisier.read(1000));
+            }
+            fisier.close();
+
+            sktSlave->flush();
         }
     }
 }

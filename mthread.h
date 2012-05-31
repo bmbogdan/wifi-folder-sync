@@ -31,6 +31,7 @@ private:
     Udp *udpSkt;
     QString slaveDir;
     bool isSlaveDirSelected;
+    bool isMasterDirSelected;
 
 
 private slots:

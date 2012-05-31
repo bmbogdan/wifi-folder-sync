@@ -9,6 +9,7 @@ MThread::MThread(QObject *parent) :
     QThread(parent)
 {
     isSlaveDirSelected = false;
+    isMasterDirSelected = false;
     udpSkt = 0;
     udpSkt = new Udp(this);
     connect(udpSkt,SIGNAL(masterDiscovered(qint16,qint32)), this, SLOT(connectToMaster(qint16,qint32)));
@@ -27,9 +28,16 @@ void MThread::toGui(const QByteArray &ba)
 }
 void MThread::fromGui(QByteArray &ba)
 {
-    //demultiplexeaza ba si citeste date master0x01 sau slave[anything_else]
+    //demultiplexeaza ba si citeste date master0x01 sau slave0x02
     if(ba[0]&0x01)
-    {
+    {        
+        if(isMasterDirSelected){
+            QByteArray b;
+            b.resize(1);
+            b[0] = 0x04;//no coded
+            toGui(b);
+            return;
+        }
         ba.remove(0,1);
         QString masterDir = QString(ba);
 
@@ -46,7 +54,17 @@ void MThread::fromGui(QByteArray &ba)
         //inittcpserver with id of udpskt
         ms->initTcpServer(udpSkt->getId());
 
-    }else{
+        isMasterDirSelected = true;
+
+    }
+    if(ba[0]&0x02){
+        if(isSlaveDirSelected){
+            QByteArray b;
+            b.resize(1);
+            b[0] = 0x04;//no coded
+            toGui(b);
+            return;
+        }
         //slave parse filesystem
         ba.remove(0,1);
         slaveDir = QString(ba);
