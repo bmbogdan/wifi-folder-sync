@@ -3,7 +3,7 @@
 #include "QFileDialog"
 #include <QCloseEvent>
 #include "qdebug.h"
-#include "directoryparser.h"
+#include "filesystem/directoryparser.h"
 
 Gui::Gui(QWidget *parent) :
     QMainWindow(parent),

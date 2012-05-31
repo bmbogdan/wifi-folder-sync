@@ -13,16 +13,20 @@ TEMPLATE = app
 SOURCES += main.cpp\
         gui.cpp \
     mthread.cpp \
-    directoryscanner.cpp \
-    udp.cpp \
-    directoryparser.cpp \
-    fileobject.cpp
+    filesystem/fileobject.cpp \
+    filesystem/directoryscanner.cpp \
+    filesystem/directoryparser.cpp \
+    networking/udp.cpp \
+    networking/slavemaster.cpp \
+    networking/masterslave.cpp
 
 HEADERS  += gui.h \
     mthread.h \
-    directoryscanner.h \
-    udp.h \
-    directoryparser.h \
-    fileobject.h
+    filesystem/fileobject.h \
+    filesystem/directoryscanner.h \
+    filesystem/directoryparser.h \
+    networking/udp.h \
+    networking/slavemaster.h \
+    networking/masterslave.h
 
 FORMS    += gui.ui
